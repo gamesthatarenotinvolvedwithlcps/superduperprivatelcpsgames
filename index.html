@@ -38,6 +38,7 @@
       const date = new Date();
       date.setTime(date.getTime() + (hours * 60 * 60 * 1000)); // Convert hours to milliseconds
       document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+      console.log(`Cookie set: ${name}=${value}; expires=${date.toUTCString()}`);
     }
 
     // Function to get a cookie value by name
@@ -68,4 +69,20 @@
     // Function to show the protected content
     function showContent() {
       document.getElementById('password-container').style.display = 'none';
-      document.getElement
+      document.getElementById('protected-content').style.display = 'block';
+      console.log("Protected content is now visible.");
+    }
+
+    // On page load, check if the cookie exists
+    window.onload = () => {
+      if (getCookie(COOKIE_NAME) === "true") {
+        console.log("Cookie found, skipping password.");
+        showContent(); // Skip password prompt if cookie exists
+      } else {
+        console.log("No cookie found, showing password prompt.");
+        document.getElementById('password-container').style.display = 'block';
+      }
+    };
+  </script>
+</body>
+</html>
