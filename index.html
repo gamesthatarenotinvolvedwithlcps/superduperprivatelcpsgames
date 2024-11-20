@@ -13,6 +13,9 @@
     #protected-content {
       display: none;
     }
+    #password-container {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -23,22 +26,46 @@
   </div>
 
   <div id="protected-content">
-    <h1>Welcome!</h1>
+    <h1>Welcome Back!</h1>
     <p>This is the protected content of your project.</p>
   </div>
 
   <script>
+    const COOKIE_NAME = "auth";
+
+    // Function to set a cookie
+    function setCookie(name, value, hours) {
+      const date = new Date();
+      date.setTime(date.getTime() + (hours * 60 * 60 * 1000)); // Convert hours to milliseconds
+      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+    }
+
+    // Function to get a cookie value by name
+    function getCookie(name) {
+      const cookies = document.cookie.split("; ");
+      for (const cookie of cookies) {
+        const [key, value] = cookie.split("=");
+        if (key === name) {
+          return value;
+        }
+      }
+      return null;
+    }
+
+    // Function to check the password
     function checkPassword() {
       const passwordInput = document.getElementById('password').value;
-      const correctPassword = "password2"; // Replace with your password
+      const correctPassword = "yourPassword123"; // Replace with your password
 
       if (passwordInput === correctPassword) {
-        document.getElementById('password-container').style.display = 'none';
-        document.getElementById('protected-content').style.display = 'block';
+        setCookie(COOKIE_NAME, "true", 12); // Set cookie valid for 12 hours
+        showContent();
       } else {
         alert('Incorrect Password');
       }
     }
-  </script>
-</body>
-</html>
+
+    // Function to show the protected content
+    function showContent() {
+      document.getElementById('password-container').style.display = 'none';
+      document.getElement
