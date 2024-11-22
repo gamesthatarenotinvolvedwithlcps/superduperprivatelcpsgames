@@ -18,59 +18,100 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    #password {
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      width: 250px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 250px;
-    }
-
-    button:hover {
-      background-color: #45a049;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      width: 400px;
+      animation: fadeIn 0.5s ease-in-out;
     }
 
     #protected-content {
       display: none;
-      font-size: 18px;
-      margin-top: 20px;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin: 40px auto;
+      width: 400px;
+      animation: slideIn 0.5s ease-in-out;
     }
 
-    #password-toggle {
+    input[type="password"] {
+      width: 100%;
+      padding: 15px;
+      margin: 20px 0;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: border-color 0.3s;
+    }
+
+    input[type="password"]:focus {
+      border-color: #007ACC;
+      outline: none;
+    }
+
+    button {
+      background-color: #007ACC;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
-      color: #007bff;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+
+    strong {
+      font-size: 20px;
+      color: #007ACC;
+      cursor: pointer;
       text-decoration: underline;
     }
 
-    #password-toggle:hover {
-      color: #0056b3;
-    }
-
-    #game-links a {
-      display: block;
-      margin: 10px;
-      color: #007bff;
+    a {
+      color: #007ACC;
       text-decoration: none;
-      font-size: 18px;
     }
 
-    #game-links a:hover {
-      color: #0056b3;
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
     }
   </style>
 </head>
@@ -78,21 +119,19 @@
   <div id="password-container">
     <h1>Enter Password</h1>
     <input type="password" id="password" placeholder="Password">
-    <button onclick="checkPassword()">Submit</button>
+    <button id="submit-btn">Submit</button>
   </div>
 
   <div id="protected-content">
-    <h1>Welcome Back! <span id="password-toggle">Show password</span></h1>
-    <p id="password-display">************</p>
-    <div id="game-links">
-      <p>Here are some game links for you:</p>
+    <h1>Welcome Back!</h1>
+    <p>Save this password: <strong id="toggle-password">************</strong></p>
       <a href="https://gamesthatarenotinvolvedwithlcps.github.io/privategamesinsteadpolytrack2/" target="_blank">polytrack</a>
       <a href="https://gamesthatarenotinvolvedwithlcps.github.io/tinyfishing" target="_blank">Tiny Fishing</a>
       <a href="https://gamesthatarenotinvolvedwithlcps.github.io/monkeymart" target="_blank">Monkey Mart</a>
       <a href="https://gamesthatarenotinvolvedwithlcps.github.io/drivemad" target="_blank">Drive Mad</a>
       <a href="https://gamesthatarenotinvolvedwithlcps.github.io/snowrider" target="_blank">Snow Rider 3D</a>
     </div>
-    <p>More to be added later!</p>
+    <p>More to be added later</p>
   </div>
 
   <script>
@@ -103,6 +142,7 @@
       const date = new Date();
       date.setTime(date.getTime() + (hours * 60 * 60 * 1000)); // Convert hours to milliseconds
       document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+      console.log(`Cookie set: ${name}=${value}; expires=${date.toUTCString()}`);
     }
 
     // Function to get a cookie value by name
@@ -122,6 +162,8 @@
       const passwordInput = document.getElementById('password').value;
       const correctPassword = "riplcpsgames"; // Replace with your password
 
+      console.log("Checking password:", passwordInput); // Debug log
+
       if (passwordInput === correctPassword) {
         setCookie(COOKIE_NAME, "true", 12); // Set cookie valid for 12 hours
         showContent();
@@ -134,28 +176,34 @@
     function showContent() {
       document.getElementById('password-container').style.display = 'none';
       document.getElementById('protected-content').style.display = 'block';
+      console.log("Protected content is now visible.");
     }
 
-    // Toggle the password visibility
-    document.getElementById('password-toggle').onclick = () => {
-      const passwordDisplay = document.getElementById('password-display');
-      const currentText = passwordDisplay.textContent;
-      if (currentText === "************") {
-        passwordDisplay.textContent = "riplcpsgames";
-        document.getElementById('password-toggle').textContent = 'Hide password';
+    // Function to toggle the visibility of the password
+    function togglePasswordVisibility() {
+      const passwordElement = document.getElementById('toggle-password');
+      if (passwordElement.textContent === "************") {
+        passwordElement.textContent = "riplcpsgames"; // Reveal the password
       } else {
-        passwordDisplay.textContent = "************";
-        document.getElementById('password-toggle').textContent = 'Show password';
+        passwordElement.textContent = "************"; // Mask the password
       }
     }
 
     // On page load, check if the cookie exists
     window.onload = () => {
       if (getCookie(COOKIE_NAME) === "true") {
+        console.log("Cookie found, skipping password.");
         showContent(); // Skip password prompt if cookie exists
       } else {
+        console.log("No cookie found, showing password prompt.");
         document.getElementById('password-container').style.display = 'block';
       }
+
+      // Add event listener to submit button
+      document.getElementById('submit-btn').addEventListener('click', checkPassword);
+
+      // Add event listener to toggle password visibility
+      document.getElementById('toggle-password').addEventListener('click', togglePasswordVisibility);
     };
   </script>
 </body>
