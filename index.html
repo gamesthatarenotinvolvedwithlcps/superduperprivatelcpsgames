@@ -269,4 +269,23 @@
     // Function to logout by clearing the auth cookie
     function logout() {
       setCookie(COOKIE_NAME, "", -1); // Clear the cookie by setting an expired date
-      location.reload(); // Reload the
+      location.reload(); // Reload the page to show the password prompt again
+    }
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    // On page load, check if the user is already authenticated by checking the cookie
+    window.onload = function() {
+      if (getCookie(COOKIE_NAME) === "true") {
+        showContent();
+      }
+    };
+
+    // Attach event listener for submit button
+    document.getElementById('submit-btn').addEventListener('click', checkPassword);
+  </script>
+</body>
+</html>
