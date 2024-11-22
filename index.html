@@ -81,6 +81,8 @@
     strong {
       font-size: 20px;
       color: #007ACC;
+      cursor: pointer;
+      text-decoration: underline;
     }
 
     a {
@@ -122,7 +124,7 @@
 
   <div id="protected-content">
     <h1>Welcome Back!</h1>
-    <p>Save this password: <strong>riplcpsgames</strong></p>
+    <p>Save this password: <strong id="toggle-password">riplcpsgames</strong></p>
     <p>PolyTrack: <a href="https://gamesthatarenotinvolvedwithlcps.github.io/privategamesinsteadpolytrack2/" target="_blank">Click here</a></p>
     <p>More to be added later</p>
   </div>
@@ -172,6 +174,16 @@
       console.log("Protected content is now visible.");
     }
 
+    // Function to toggle the visibility of the password
+    function togglePasswordVisibility() {
+      const passwordElement = document.getElementById('toggle-password');
+      if (passwordElement.textContent === "riplcpsgames") {
+        passwordElement.textContent = "************"; // Mask the password
+      } else {
+        passwordElement.textContent = "riplcpsgames"; // Reveal the password
+      }
+    }
+
     // On page load, check if the cookie exists
     window.onload = () => {
       if (getCookie(COOKIE_NAME) === "true") {
@@ -184,6 +196,9 @@
 
       // Add event listener to submit button
       document.getElementById('submit-btn').addEventListener('click', checkPassword);
+
+      // Add event listener to toggle password visibility
+      document.getElementById('toggle-password').addEventListener('click', togglePasswordVisibility);
     };
   </script>
 </body>
