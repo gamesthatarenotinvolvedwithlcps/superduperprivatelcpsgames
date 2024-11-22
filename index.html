@@ -76,7 +76,7 @@
     button:hover {
       background-color: #005fa3;
       transform: scale(1.05);
-      box-shadow: 0 0 10px 2px #007ACC; /* Glow effect */
+      box-shadow: 0 0 10px 2px #007ACC;
     }
 
     button:active {
@@ -253,7 +253,14 @@
       }
 
       // Add event listener to submit button
-      document.getElementById('submit-btn').addEventListener('click', checkPassword);
+      document.getElementById('submit-btn').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        checkPassword();
+      });
 
       // Add event listener to toggle password visibility
-      document.getElementById('toggle-password').addEventListener('click', togglePasswordVisibility
+      document.getElementById('toggle-password').addEventListener('click', togglePasswordVisibility);
+    };
+  </script>
+</body>
+</html>
