@@ -12,6 +12,11 @@
       text-align: center;
       padding: 40px;
       animation: fadeInBackground 1s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
 
     #password-container {
@@ -23,9 +28,9 @@
       padding: 40px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      margin: 0 auto;
       width: 400px;
       animation: fadeIn 0.5s ease-in-out;
+      text-align: center;
     }
 
     #protected-content {
@@ -34,7 +39,7 @@
       padding: 40px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      margin: 40px auto;
+      margin-top: 40px;
       width: 400px;
       animation: slideIn 0.5s ease-in-out;
     }
@@ -52,7 +57,7 @@
     input[type="password"]:focus {
       border-color: #007ACC;
       outline: none;
-      transform: scale(1.05); /* Slight scale effect */
+      transform: scale(1.05);
     }
 
     button {
@@ -70,12 +75,12 @@
 
     button:hover {
       background-color: #005fa3;
-      transform: scale(1.05); /* Slight scale effect on hover */
+      transform: scale(1.05);
     }
 
     button:active {
       background-color: #004b82;
-      transform: scale(0.98); /* Slight shrink effect on click */
+      transform: scale(0.98);
     }
 
     h1 {
@@ -119,6 +124,11 @@
     a:active {
       background-color: #004b82;
       transform: scale(0.98);
+    }
+
+    .logout-btn {
+      background-color: #e74c3c;
+      margin-top: 20px;
     }
 
     @keyframes fadeIn {
@@ -167,6 +177,7 @@
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/drivemad'">Drive Mad</button>
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/snowrider'">Snow Rider 3D</button>
     <p>More to be added later</p>
+    <button class="logout-btn" onclick="logout()">Clear Auth Cookie</button>
   </div>
 
   <script>
@@ -222,6 +233,12 @@
       } else {
         passwordElement.textContent = "************"; // Mask the password
       }
+    }
+
+    // Function to logout by clearing the auth cookie
+    function logout() {
+      setCookie(COOKIE_NAME, "", -1); // Clear the cookie by setting an expired date
+      location.reload(); // Reload the page to show the password prompt again
     }
 
     // On page load, check if the cookie exists
