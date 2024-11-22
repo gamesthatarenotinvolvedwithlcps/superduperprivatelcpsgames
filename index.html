@@ -6,15 +6,90 @@
   <title>Password Protected</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
       text-align: center;
-      margin-top: 20%;
+      padding: 20px;
     }
+
+    #password-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      max-width: 300px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
     #protected-content {
       display: none;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      max-width: 300px;
+      animation: slideIn 0.5s ease-in-out;
     }
-    #password-container {
-      display: none;
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007ACC;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
     }
   </style>
 </head>
@@ -26,8 +101,9 @@
   </div>
 
   <div id="protected-content">
-    <h1>Welcome Back! save this password: riplcpsgames</h1>
-    <p>PolyTrack: https://gamesthatarenotinvolvedwithlcps.github.io/privategamesinsteadpolytrack2/</p>
+    <h1>Welcome Back!</h1>
+    <p>Save this password: <strong>riplcpsgames</strong></p>
+    <p>PolyTrack: <a href="https://gamesthatarenotinvolvedwithlcps.github.io/privategamesinsteadpolytrack2/" target="_blank">Click here</a></p>
     <p>More to be added later</p>
   </div>
 
