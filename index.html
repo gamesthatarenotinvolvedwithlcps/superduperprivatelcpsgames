@@ -124,7 +124,7 @@
 
   <div id="protected-content">
     <h1>Welcome Back!</h1>
-    <p>Save this password: <strong id="toggle-password">riplcpsgames</strong></p>
+    <p>Save this password: <strong id="toggle-password">************</strong></p>
     <p>PolyTrack: <a href="https://gamesthatarenotinvolvedwithlcps.github.io/privategamesinsteadpolytrack2/" target="_blank">Click here</a></p>
     <p>More to be added later</p>
   </div>
@@ -177,10 +177,10 @@
     // Function to toggle the visibility of the password
     function togglePasswordVisibility() {
       const passwordElement = document.getElementById('toggle-password');
-      if (passwordElement.textContent === "riplcpsgames") {
-        passwordElement.textContent = "************"; // Mask the password
-      } else {
+      if (passwordElement.textContent === "************") {
         passwordElement.textContent = "riplcpsgames"; // Reveal the password
+      } else {
+        passwordElement.textContent = "************"; // Mask the password
       }
     }
 
