@@ -76,7 +76,6 @@
     button:hover {
       background-color: #005fa3;
       transform: scale(1.05);
-      box-shadow: 0 0 10px 2px #007ACC;
     }
 
     button:active {
@@ -130,6 +129,12 @@
     .logout-btn {
       background-color: #e74c3c;
       margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #e74c3c; /* Keep red on hover */
+      transform: scale(1.05); /* Slight scaling effect */
     }
 
     @keyframes fadeIn {
@@ -189,7 +194,6 @@
       const date = new Date();
       date.setTime(date.getTime() + (hours * 60 * 60 * 1000)); // Convert hours to milliseconds
       document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
-      console.log(`Cookie set: ${name}=${value}; expires=${date.toUTCString()}`);
     }
 
     // Function to get a cookie value by name
@@ -209,8 +213,6 @@
       const passwordInput = document.getElementById('password').value;
       const correctPassword = "riplcpsgames"; // Replace with your password
 
-      console.log("Checking password:", passwordInput); // Debug log
-
       if (passwordInput === correctPassword) {
         setCookie(COOKIE_NAME, "true", 12); // Set cookie valid for 12 hours
         showContent();
@@ -223,7 +225,6 @@
     function showContent() {
       document.getElementById('password-container').style.display = 'none';
       document.getElementById('protected-content').style.display = 'block';
-      console.log("Protected content is now visible.");
     }
 
     // Function to toggle the visibility of the password
@@ -245,18 +246,13 @@
     // On page load, check if the cookie exists
     window.onload = () => {
       if (getCookie(COOKIE_NAME) === "true") {
-        console.log("Cookie found, skipping password.");
         showContent(); // Skip password prompt if cookie exists
       } else {
-        console.log("No cookie found, showing password prompt.");
         document.getElementById('password-container').style.display = 'block';
       }
 
       // Add event listener to submit button
-      document.getElementById('submit-btn').addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default form submission
-        checkPassword();
-      });
+      document.getElementById('submit-btn').addEventListener('click', checkPassword);
 
       // Add event listener to toggle password visibility
       document.getElementById('toggle-password').addEventListener('click', togglePasswordVisibility);
