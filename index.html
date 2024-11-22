@@ -207,9 +207,9 @@
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/monkeymart'">Monkey Mart</button>
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/drivemad'">Drive Mad</button>
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/snowrider'">Snow Rider 3D</button>
-    <p>Misc</p>
+    <p>More to be added later</p>
     <button class="logout-btn" onclick="logout()">Logout</button>
-    <button id="theme-toggle-protected" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Added dark mode toggle for the protected section -->
+    <button id="theme-toggle-protected" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </div>
 
   <script>
@@ -276,12 +276,20 @@
     // Function to toggle dark mode
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
+      // Save the dark mode preference in localStorage
+      const darkModeEnabled = document.body.classList.contains('dark-mode');
+      localStorage.setItem('dark-mode', darkModeEnabled);
     }
 
-    // On page load, check if the user is authenticated
+    // On page load, check if the user is authenticated and if dark mode is enabled
     window.onload = function() {
       if (getCookie(COOKIE_NAME) === "true") {
         showContent();
+      }
+
+      // Check for dark mode preference in localStorage
+      if (localStorage.getItem('dark-mode') === 'true') {
+        document.body.classList.add('dark-mode');
       }
 
       // Attach event listener for submit button
