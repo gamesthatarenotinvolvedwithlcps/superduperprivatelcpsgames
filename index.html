@@ -68,7 +68,7 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 18px;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
       margin: 10px 0;
       width: 80%;
     }
@@ -76,16 +76,12 @@
     button:hover {
       background-color: #005fa3;
       transform: scale(1.05);
-      box-shadow: 0 0 6px #007ACC, 0 0 8px #005fa3; /* Lowered glow strength */
+      box-shadow: 0 0 10px 2px #007ACC; /* Glow effect */
     }
 
     button:active {
       background-color: #004b82;
       transform: scale(0.98);
-    }
-
-    button.shake {
-      animation: shake 0.5s ease-in-out;
     }
 
     h1 {
@@ -164,24 +160,6 @@
         transform: translateX(0);
       }
     }
-
-    @keyframes shake {
-      0% {
-        transform: translateX(0);
-      }
-      25% {
-        transform: translateX(-10px);
-      }
-      50% {
-        transform: translateX(10px);
-      }
-      75% {
-        transform: translateX(-10px);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
   </style>
 </head>
 <body>
@@ -200,7 +178,7 @@
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/drivemad'">Drive Mad</button>
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/snowrider'">Snow Rider 3D</button>
     <p>More to be added later</p>
-    <button class="logout-btn" onclick="logout()">Clear Auth Cookie (Log Out) </button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 
   <script>
@@ -238,9 +216,6 @@
         showContent();
       } else {
         alert('Incorrect Password');
-        const submitBtn = document.getElementById('submit-btn');
-        submitBtn.classList.add('shake'); // Add shake animation
-        setTimeout(() => submitBtn.classList.remove('shake'), 500); // Remove after shaking
       }
     }
 
@@ -264,6 +239,21 @@
     // Function to logout by clearing the auth cookie
     function logout() {
       setCookie(COOKIE_NAME, "", -1); // Clear the cookie by setting an expired date
-      alert("Auth cookie cleared"); // Show alert
       location.reload(); // Reload the page to show the password prompt again
-   
+    }
+
+    // On page load, check if the cookie exists
+    window.onload = () => {
+      if (getCookie(COOKIE_NAME) === "true") {
+        console.log("Cookie found, skipping password.");
+        showContent(); // Skip password prompt if cookie exists
+      } else {
+        console.log("No cookie found, showing password prompt.");
+        document.getElementById('password-container').style.display = 'block';
+      }
+
+      // Add event listener to submit button
+      document.getElementById('submit-btn').addEventListener('click', checkPassword);
+
+      // Add event listener to toggle password visibility
+      document.getElementById('toggle-password').addEventListener('click', togglePasswordVisibility
