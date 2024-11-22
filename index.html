@@ -11,6 +11,7 @@
       color: #333;
       text-align: center;
       padding: 40px;
+      animation: fadeInBackground 1s ease-in-out;
     }
 
     #password-container {
@@ -45,12 +46,13 @@
       border: 2px solid #ccc;
       border-radius: 8px;
       font-size: 18px;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, transform 0.2s;
     }
 
     input[type="password"]:focus {
       border-color: #007ACC;
       outline: none;
+      transform: scale(1.05); /* Slight scale effect */
     }
 
     button {
@@ -61,13 +63,19 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 18px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
       margin: 10px 0;
       width: 80%;
     }
 
     button:hover {
       background-color: #005fa3;
+      transform: scale(1.05); /* Slight scale effect on hover */
+    }
+
+    button:active {
+      background-color: #004b82;
+      transform: scale(0.98); /* Slight shrink effect on click */
     }
 
     h1 {
@@ -85,6 +93,11 @@
       color: #007ACC;
       cursor: pointer;
       text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    strong:hover {
+      color: #005fa3;
     }
 
     a {
@@ -92,10 +105,20 @@
       text-decoration: none;
       display: block;
       margin-top: 15px;
+      padding: 12px;
+      background-color: #007ACC;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     a:hover {
       background-color: #005fa3;
+      transform: scale(1.05);
+    }
+
+    a:active {
+      background-color: #004b82;
+      transform: scale(0.98);
     }
 
     @keyframes fadeIn {
@@ -106,6 +129,15 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInBackground {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
       }
     }
 
