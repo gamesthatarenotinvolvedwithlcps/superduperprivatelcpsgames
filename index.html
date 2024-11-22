@@ -243,8 +243,8 @@
     function setCookie(name, value, hours) {
       const date = new Date();
       date.setTime(date.getTime() + (hours * 60 * 60 * 1000)); // Convert hours to milliseconds
-      document.cookie = ${name}=${value}; expires=${date.toUTCString()}; path=/;
-      console.log(Cookie set: ${name}=${value}; expires=${date.toUTCString()});
+      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+      console.log(`Cookie set: ${name}=${value}; expires=${date.toUTCString()}`);
     }
 
     // Function to get a cookie value by name
