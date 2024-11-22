@@ -200,7 +200,7 @@
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/drivemad'">Drive Mad</button>
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/snowrider'">Snow Rider 3D</button>
     <p>More to be added later</p>
-    <button class="logout-btn" onclick="logout()">Clear Auth Cookie (Logout) </button>
+    <button class="logout-btn" onclick="logout()">Clear Auth Cookie (Log Out) </button>
   </div>
 
   <script>
@@ -263,4 +263,7 @@
 
     // Function to logout by clearing the auth cookie
     function logout() {
-      setCookie(COOKIE_NAME, "", -1); // Clear the cookie by setting
+      setCookie(COOKIE_NAME, "", -1); // Clear the cookie by setting an expired date
+      alert("Auth cookie cleared"); // Show alert
+      location.reload(); // Reload the page to show the password prompt again
+   
