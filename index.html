@@ -117,7 +117,7 @@
   <div id="password-container">
     <h1>Enter Password</h1>
     <input type="password" id="password" placeholder="Password">
-    <button onclick="checkPassword()">Submit</button>
+    <button id="submit-btn">Submit</button>
   </div>
 
   <div id="protected-content">
@@ -155,6 +155,8 @@
       const passwordInput = document.getElementById('password').value;
       const correctPassword = "riplcpsgames"; // Replace with your password
 
+      console.log("Checking password:", passwordInput); // Debug log
+
       if (passwordInput === correctPassword) {
         setCookie(COOKIE_NAME, "true", 12); // Set cookie valid for 12 hours
         showContent();
@@ -165,4 +167,24 @@
 
     // Function to show the protected content
     function showContent() {
-      document.getElementById('password-con
+      document.getElementById('password-container').style.display = 'none';
+      document.getElementById('protected-content').style.display = 'block';
+      console.log("Protected content is now visible.");
+    }
+
+    // On page load, check if the cookie exists
+    window.onload = () => {
+      if (getCookie(COOKIE_NAME) === "true") {
+        console.log("Cookie found, skipping password.");
+        showContent(); // Skip password prompt if cookie exists
+      } else {
+        console.log("No cookie found, showing password prompt.");
+        document.getElementById('password-container').style.display = 'block';
+      }
+
+      // Add event listener to submit button
+      document.getElementById('submit-btn').addEventListener('click', checkPassword);
+    };
+  </script>
+</body>
+</html>
