@@ -5,34 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Password Protected</title>
   <style>
-    /* Base Styles */
+    /* Default light mode styles */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f4f4f9;
       color: #333;
-      margin: 0;
+      text-align: center;
+      padding: 40px;
+      animation: fadeInBackground 1s ease-in-out;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      animation: fadeInBackground 1s ease-in-out;
+      margin: 0;
+      position: relative; /* This is important for positioning Beta Access */
     }
 
-    /* Password Container */
+    /* Beta Access text styling */
+    #beta-access {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     #password-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       background: #ffffff;
       padding: 40px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      width: 400px;
       animation: fadeIn 0.5s ease-in-out;
-      width: 90%;
-      max-width: 400px;
+      text-align: center;
     }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 30px;
+    #protected-content {
+      display: none;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+      width: 400px;
+      animation: slideIn 0.5s ease-in-out;
     }
 
     input[type="password"] {
@@ -60,8 +84,8 @@
       cursor: pointer;
       font-size: 18px;
       transition: background-color 0.3s ease, transform 0.2s ease;
-      margin-top: 10px;
-      width: 100%;
+      margin: 10px 0;
+      width: 80%;
     }
 
     button:hover {
@@ -75,21 +99,27 @@
       transform: scale(0.98);
     }
 
- 
-  /* Updated Protected Content Styles */
-  #protected-content {
-    display: none;
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-    animation: slideIn 0.5s ease-in-out;
-    width: 95%; /* Mobile-friendly width */
-    max-width: 800px; /* Wider for larger screens */
-  }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
 
+    p {
+      font-size: 18px;
+      margin: 15px 0;
+    }
 
+    strong {
+      font-size: 20px;
+      color: #007ACC;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    strong:hover {
+      color: #005fa3;
+    }
 
     a {
       color: #fff;
@@ -117,32 +147,19 @@
       margin-top: 20px;
     }
 
-    .logout-btn:hover {
-      background-color: #c0392b;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px 2px #e74c3c;
-    }
-
-    #beta-access {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      font-size: 14px;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-
-    /* Dark Mode */
+    /* Dark mode styles */
     .dark-mode {
       background-color: #333;
       color: #f4f4f9;
     }
 
-    .dark-mode #password-container,
+    .dark-mode #password-container {
+      background: #444;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
     .dark-mode #protected-content {
-      background-color: #444;
+      background: #444;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
     }
 
@@ -152,12 +169,17 @@
 
     .dark-mode button:hover {
       background-color: #777;
-      box-shadow: 0 0 10px 2px #fff;
+      box-shadow: 0 0 10px 4px #fff; /* White glow effect */
     }
 
     .dark-mode .logout-btn:hover {
       background-color: #c0392b;
-      box-shadow: 0 0 10px 2px #fff;
+      box-shadow: 0 0 10px 4px #fff; /* White glow effect on logout button */
+    }
+
+    .dark-mode button:active {
+      background-color: #444;
+      transform: scale(0.98);
     }
 
     @keyframes fadeIn {
@@ -201,68 +223,101 @@
   <div id="protected-content">
     <h1>Welcome Back!</h1>
     <p>Save this password: <strong id="toggle-password">************</strong></p>
-    <a href="https://example.com">Example Link</a>
+    <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/privategamesinsteadpolytrack2/'">PolyTrack</button>
+    <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/tinyfishing'">Tiny Fishing</button>
+    <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/monkeymart'">Monkey Mart (Broken) </button>
+    <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/drivemad'">Drive Mad</button>
+    <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/snowrider'">Snow Rider 3D</button>
+    <p>More to be added later</p>
     <button class="logout-btn" onclick="logout()">Logout</button>
     <button id="theme-toggle-protected" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </div>
 
+  <!-- Beta Access label -->
   <div id="beta-access">Beta Access</div>
 
   <script>
     const COOKIE_NAME = "auth";
 
+    // Function to set a cookie
     function setCookie(name, value, hours) {
       const date = new Date();
-      date.setTime(date.getTime() + hours * 60 * 60 * 1000);
-      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+      date.setTime(date.getTime() + (hours * 60 * 60 * 1000)); // Convert hours to milliseconds
+      document.cookie = ${name}=${value}; expires=${date.toUTCString()}; path=/;
+      console.log(Cookie set: ${name}=${value}; expires=${date.toUTCString()});
     }
 
+    // Function to get a cookie value by name
     function getCookie(name) {
       const cookies = document.cookie.split("; ");
       for (const cookie of cookies) {
         const [key, value] = cookie.split("=");
-        if (key === name) return value;
+        if (key === name) {
+          return value;
+        }
       }
       return null;
     }
 
+    // Function to check the password
     function checkPassword() {
-      const passwordInput = document.getElementById("password").value;
-      const correctPassword = "riplcpsgames";
+      const passwordInput = document.getElementById('password').value;
+      const correctPassword = "riplcpsgames"; // Replace with your password
+
+      console.log("Checking password:", passwordInput); // Debug log
+
       if (passwordInput === correctPassword) {
-        setCookie(COOKIE_NAME, "true", 12);
+        setCookie(COOKIE_NAME, "true", 12); // Set cookie valid for 12 hours
         showContent();
       } else {
-        alert("Incorrect Password");
+        alert('Incorrect Password');
       }
     }
 
+    // Function to show the protected content
     function showContent() {
-      document.getElementById("password-container").style.display = "none";
-      document.getElementById("protected-content").style.display = "block";
+      document.getElementById('password-container').style.display = 'none';
+      document.getElementById('protected-content').style.display = 'block';
+      console.log("Protected content is now visible.");
     }
 
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem(
-        "dark-mode",
-        document.body.classList.contains("dark-mode")
-      );
+    // Function to toggle the visibility of the password
+    function togglePasswordVisibility() {
+      const passwordElement = document.getElementById('toggle-password');
+      if (passwordElement.textContent === "************") {
+        passwordElement.textContent = "riplcpsgames"; // Reveal the password
+      } else {
+        passwordElement.textContent = "************"; // Mask the password
+      }
     }
 
+    // Function to logout by clearing the auth cookie
     function logout() {
-      setCookie(COOKIE_NAME, "", -1);
-      location.reload();
+      setCookie(COOKIE_NAME, "", -1); // Clear the cookie by setting an expired date
+      location.reload(); // Reload the page to show the password prompt again
     }
 
-    window.onload = function () {
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      // Save the dark mode preference in localStorage
+      const darkModeEnabled = document.body.classList.contains('dark-mode');
+      localStorage.setItem('dark-mode', darkModeEnabled);
+    }
+
+    // On page load, check if the user is authenticated and if dark mode is enabled
+    window.onload = function() {
       if (getCookie(COOKIE_NAME) === "true") {
         showContent();
       }
-      if (localStorage.getItem("dark-mode") === "true") {
-        document.body.classList.add("dark-mode");
+
+      // Check for dark mode preference in localStorage
+      if (localStorage.getItem('dark-mode') === 'true') {
+        document.body.classList.add('dark-mode');
       }
-      document.getElementById("submit-btn").addEventListener("click", checkPassword);
+
+      // Attach event listener for submit button
+      document.getElementById('submit-btn').addEventListener('click', checkPassword);
     };
   </script>
 </body>
