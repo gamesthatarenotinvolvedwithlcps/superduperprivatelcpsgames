@@ -18,6 +18,20 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      position: relative; /* This is important for positioning Beta Access */
+    }
+
+    /* Beta Access text styling */
+    #beta-access {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     #password-container {
@@ -214,10 +228,13 @@
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/monkeymart'">Monkey Mart</button>
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/drivemad'">Drive Mad</button>
     <button onclick="window.location.href='https://gamesthatarenotinvolvedwithlcps.github.io/snowrider'">Snow Rider 3D</button>
-    <p>Misc</p>
+    <p>More to be added later</p>
     <button class="logout-btn" onclick="logout()">Logout</button>
     <button id="theme-toggle-protected" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </div>
+
+  <!-- Beta Access label -->
+  <div id="beta-access">Beta Access</div>
 
   <script>
     const COOKIE_NAME = "auth";
