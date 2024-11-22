@@ -155,10 +155,17 @@
 
     .dark-mode button:hover {
       background-color: #777;
+      box-shadow: 0 0 10px 4px #fff; /* White glow effect */
     }
 
-    .dark-mode .logout-btn {
+    .dark-mode .logout-btn:hover {
       background-color: #c0392b;
+      box-shadow: 0 0 10px 4px #fff; /* White glow effect on logout button */
+    }
+
+    .dark-mode button:active {
+      background-color: #444;
+      transform: scale(0.98);
     }
 
     @keyframes fadeIn {
